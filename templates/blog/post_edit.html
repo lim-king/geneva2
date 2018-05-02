@@ -1,0 +1,89 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+    <div class="container text-center">
+        <div class="row">
+            <div class="row row-offcanvas row-offcanvas-right">
+                <div class="col-12 col-md-12">
+                    <div class="jumbotron">
+                        <h1>광고컨테이너 작성 및 수정</h1>
+                        <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some
+                            responsive-range viewport sizes to see it in action.</p>
+                    </div>
+                </div>
+            </div>
+            <script>
+                $(document).ready(function(){
+                    var editor_object = [];
+                    nhn.husky.EZCreator.createInIFrame({
+                        oAppRef: editor_object,
+                        elPlaceHolder: "text",
+                        sSkinURI: "/static/smartedit/SmartEditor2Skin.html",
+                        fCreator: "createSEditor2",
+                        htParams:{
+                            buseToolbar : true,
+                            buseVerticalResizer: true,
+                            buseModeChanger: true,
+                        }
+                    });
+                    $("#savebutton").click(function(){
+                        //id가 smarteditor인 textarea에 에디터에서 대입
+                        editor_object.getById["text"].exec("UPDATE_CONTENTS_FIELD", []);
+                        // 이부분에 에디터 validation 검증
+
+                        //폼 submit
+                        $("#frm").submit();
+                    })
+                })
+
+            </script>
+            <div class="col-sm-9 text-left">
+                {% comment %}
+                    파일 업로드를 위해서 form 옵션에 enctype="multipart/form-data" 추가해야한다.
+                {% endcomment %}
+                <form method="POST" class="post-form" enctype="multipart/form-data" id="frm">
+                    {% csrf_token %}
+{#                    {{ form.as_p }}#}
+                    <div class="form-group">
+                        <label for="id_title">제목:</label>
+                        <input type="text" class="form-control" id="id_title" required="" placeholder="제목을 입력하세요" name="title" maxlength="200"
+                                {% if form.initial.title %} value="{{ form.initial.title }}" {% endif %}>
+                    </div>
+                    <div class="form-group">
+                        <label for="text">내용:</label>
+                        <textarea class="form-control" name="text" id="text" rows="10" cols="40" required="" placeholder="내용을 입력하세요">{% if form.initial.text %}{{ form.initial.text }}{% endif %}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="id_photo_thumbnail">썸네일 이미지 파일:</label>
+                        {% if form.initial.photo_thumbnail %}
+                            현재:
+                            <a href="/{{ form.initial.photo_thumbnail }}">{{ form.initial.photo_thumbnail }}</a>
+                            <br>
+                            변경:
+                        {% endif %}
+                        <input type="file" class="form-control" name="photo_thumbnail" id="id_photo_thumbnail">
+                    </div>
+
+
+                    <a class="save btn btn-default" href="{% url 'post_list' %}"><span class="glyphicon glyphicon-share-alt"></span>List</a>
+                    <button type="button" class="save btn btn-default" id="savebutton">Save</button>
+                </form>
+            </div>
+
+            <div class="col-6 col-md-3 sidebar-offcanvas" id="sidebar">
+                <div class="list-group">
+                    <a href="#" class="list-group-item active">광고링크 목록</a>
+                    <a href="#" class="list-group-item">Link</a>
+                    <a href="#" class="list-group-item">Link</a>
+                    <a href="#" class="list-group-item">Link</a>
+                    <a href="#" class="list-group-item">Link</a>
+                    <a href="#" class="list-group-item">Link</a>
+                    <a href="#" class="list-group-item">Link</a>
+                    <a href="#" class="list-group-item">Link</a>
+                    <a href="#" class="list-group-item">Link</a>
+                    <a href="#" class="list-group-item">Link</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

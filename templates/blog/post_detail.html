@@ -1,0 +1,54 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+    <div class="container">
+
+        <div class="row row-offcanvas row-offcanvas-right">
+
+            <div class="col-12 col-md-9">
+                <div class="row">
+                    <div class="col-md-12 col-lg-12">
+                        <ul class="media-list main-list">
+                            <li class="media">
+                                <img class="pull-left media-object" src="/{{ post.photo_thumbnail }}" width="250" height="150">
+                                {% if post.published_date %}
+                                    <div class="date">
+                                        {{ post.published_date }}
+                                        <p>{{ post.author }}</p>
+                                    </div>
+                                {% endif %}
+                                <div class="media-body">
+                                    <h1 class="media-heading">{{ post.title }}</h1>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+{#                <div class="jumbotron">                    #}
+{#                </div>#}
+                {{ post.text|safe }}
+            </div><!--/span-->
+
+            <div class="col-6 col-md-3 sidebar-offcanvas" id="sidebar">
+                <div class="list-group">
+                    {% if posts %}
+                        <a href="#" class="list-group-item active"><strong>{{ post.author }}</strong><br/>  님이 게시한 광고</a>
+                        {% for post in posts %}
+                            <a href="{% url 'post_detail' pk=post.pk %}" class="list-group-item">{{ post.title }}</a>
+                        {% endfor %}
+                    {% else %}
+                        <a href="#" class="list-group-item active">광고링크</a>
+                        <a href="{% url 'post_list' %}" class="list-group-item">광고컨테이너 목록으로</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+
+    <a class="save btn btn-default" href="{% url 'post_list' %}"><span class="glyphicon glyphicon-share-alt"></span>List</a>
+    {% if user.id == post.author.id %}
+        <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+    {% endif %}
+    <hr>
+    </div>
+{% endblock %}

@@ -1,0 +1,120 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row row-offcanvas row-offcanvas-right">
+            <div class="col-12 col-md-9">
+                <div class="well well-sm">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            {% if user_info.profile_image %}
+                                <img src="/{{ user_info.profile_image }}" alt="" class="img-rounded img-responsive"/>
+                            {% else %}
+                                <img src="http://placehold.it/300x250" alt="" class="img-rounded img-responsive"/>
+                            {% endif %}
+                        </div>
+                        <div class="col-sm-8 col-md-8">
+                            <h4>{{ user_info.nickname }}</h4>
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <td>이메일</td>
+                                    <td>{{ user_info.email }}</td>
+                                </tr>
+                                <tr>
+                                    <td>인증여부</td>
+                                    <td>
+                                        {% if user_info.is_certificated %}인증 회원입니다.{% else %}미인증 회원입니다.{% endif %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>권한</td>
+                                    <td>{% if user_info.permission  == 'AT' %}광고주{% elif user_info.permission == 'MB' %}
+                                        일반{% endif %}</td>
+                                </tr>
+                                <tr>
+                                    <td>마지막 로그인</td>
+                                    <td>
+                                        <div class="date">
+                                            {% if user_info.last_login %} {{ user_info.last_login }} {% endif %}
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="text-right">
+                                <a class="btn btn-default" href="{% url 'my_info_edit' user_info.pk %}"><span
+                                        class="glyphicon glyphicon-pencil"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        광고 게시판
+                        <span class="badge badge-primary badge-pill">
+                            {% if posts_count %}
+                                {{ posts_count }}
+                            {% else %}
+                                0
+                            {% endif %}
+                        </span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        test 게시판 1
+                        <span class="badge badge-primary badge-pill">0</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        test 게시판 2
+                        <span class="badge badge-primary badge-pill">0</span>
+                    </li>
+                </ul>
+                <hr>
+                <h2>등록한 게시글</h2>
+                <p>The small element is used to create a lighter, secondary text in any heading:</p>
+                <table class="table">
+                    <caption>광고 게시글</caption>
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">제목</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for post in posts %}
+                        <tr>
+                            <th scope="row"><input type="checkbox"></th>
+                            <td>
+                                <a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <div class="text-right">
+                    <a class="save btn btn-default" href="{% url 'post_list' %}"><span class="glyphicon glyphicon-share-alt"></span>List</a>
+                    {% if user.permission == 'AT' %}
+                        <a class="btn btn-default" href="{% url 'post_new' %}"><span
+                                class="glyphicon glyphicon-pencil"></span></a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="col-6 col-md-3 sidebar-offcanvas" id="sidebar">
+                <div class="list-group">
+                    <a href="#" class="list-group-item active">광고링크 목록</a>
+                    <a href="{% url 'post_list' %}" class="list-group-item">광고컨테이너 목록으로</a>
+                    <a href="#" class="list-group-item">Link</a>
+                    <a href="#" class="list-group-item">Link</a>
+                    <a href="#" class="list-group-item">Link</a>
+                    <a href="#" class="list-group-item">Link</a>
+                    <a href="#" class="list-group-item">Link</a>
+                    <a href="#" class="list-group-item">Link</a>
+                    <a href="#" class="list-group-item">Link</a>
+                    <a href="#" class="list-group-item">Link</a>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </div>
+{% endblock %}
