@@ -43,6 +43,12 @@
     visibility: visible;
 }
 
+.thumbnail {
+    padding: 0 0 15px 0;
+    border: none;
+    border-radius: 0;
+}
+
 @keyframes slide {
     0% {
         opacity: 0;

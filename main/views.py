@@ -20,7 +20,7 @@ def main(request):
     #         create_user_form.save()
     # else:
     #     create_user_form = UserCreationForm()
-    posts = Post.objects.filter(created_date__lte=timezone.now()).order_by('-created_date')[:5]
+    posts = Post.objects.filter(created_date__lte=timezone.now()).order_by('-created_date')[:6]
     timeboards = MainTimeBoard.objects.all()
     return render(request, 'main/main.html', {'posts': posts, 'timeboards': timeboards})
 
