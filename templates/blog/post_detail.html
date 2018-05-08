@@ -33,8 +33,12 @@
                 <div class="list-group">
                     {% if posts %}
                         <a href="#" class="list-group-item active"><strong>{{ post.author }}</strong><br/>  님이 게시한 광고</a>
-                        {% for post in posts %}
-                            <a href="{% url 'post_detail' pk=post.pk %}" class="list-group-item">{{ post.title }}</a>
+                        {% for post_sub in posts %}
+                            {% if post_sub.pk == post.pk %}
+                                <a href="{% url 'post_detail' pk=post_sub.pk %}" class="list-group-item list-group-item-info">{{ post_sub.title }}</a>
+                            {% else %}
+                                <a href="{% url 'post_detail' pk=post_sub.pk %}" class="list-group-item">{{ post_sub.title }}</a>
+                            {% endif %}
                         {% endfor %}
                     {% else %}
                         <a href="#" class="list-group-item active">광고링크</a>
