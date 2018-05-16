@@ -16,4 +16,5 @@ urlpatterns = [
     url(r'^post/(?P<pk>\d+)/delete/$', blog_view.post_delete, name='post_delete'),
     url(r'^my_info/$', views.my_info, name='my_info'),
     url(r'^my_info/(?P<pk>\d+)/edit/$', views.my_info_edit, name='my_info_edit'),
+    url(r'^product/$', views.product, name='product'),
 ]

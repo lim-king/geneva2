@@ -33,4 +33,15 @@
             </div>
         </div>
     </div>
+
+    <div class="container">
+        <div class="col-md-12">
+            <hr>
+            <div class="gal">
+                {% for post in posts %}
+                    <img src="/{{ post.photo_thumbnail }}" alt="" >
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock %}

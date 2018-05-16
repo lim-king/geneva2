@@ -1,0 +1,128 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+    <style>
+        .panel {
+            border: 1px solid #33b7b5 ;
+            border-radius: 0 !important;
+            transition: box-shadow 0.5s;
+        }
+
+        .panel:hover {
+            box-shadow: 5px 0px 40px rgba(0, 0, 0, .2);
+        }
+
+        .panel-footer .btn:hover {
+            border: 1px solid #33b7b5 ;
+            background-color: #fff !important;
+            color: #33b7b5 ;
+        }
+
+        .panel-heading {
+            color: #fff !important;
+            background-color: #33b7b5  !important;
+            padding: 25px;
+            border-bottom: 1px solid transparent;
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+        }
+
+        .panel-footer {
+            background-color: white !important;
+        }
+
+        .panel-footer h3 {
+            font-size: 32px;
+        }
+
+        .panel-footer h4 {
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .panel-footer .btn {
+            margin: 15px 0;
+            background-color: #33b7b5 ;
+            color: #fff;
+        }
+    </style>
+
+    <div class="container">
+        <div class="row row-offcanvas row-offcanvas-right">
+            <div class="col-12 col-md-12">
+                <div class="jumbotron">
+                    <h1>광고 모델 선택 및 결제</h1>
+                    <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some
+                        responsive-range viewport sizes to see it in action.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="text-center">
+                <h2>광고 이용권 구매</h2>
+                <h4>Choose a payment plan that works for you</h4>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 col-xs-12">
+                    <div class="panel panel-default text-center">
+                        <div class="panel-heading">
+                            <h1>CPM</h1>
+                            <p>CPM(Cost Per Millennium)</p>
+                        </div>
+                        <div class="panel-body">
+                            <p>광고노출에 대한 고정 광고비가 부과되는 방식</p>
+                            <p><strong>1000</strong> 노출횟수</p>
+                            <p>-</p>
+                            <p>-</p>
+                            <p><strong>Endless</strong> Amet</p>
+                        </div>
+                        <div class="panel-footer">
+                            <h3>500,000</h3>
+                            <button class="btn btn-lg">선택</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-xs-12">
+                    <div class="panel panel-default text-center">
+                        <div class="panel-heading">
+                            <h1>CPC</h1>
+                            <p>(Cost Per Click) </p>
+                        </div>
+                        <div class="panel-body">
+                            <p>광고클릭 1번당 광고비가 부과되는 방식</p>
+                            <p><strong>10000</strong> 클릭횟수</p>
+                            <p>-</p>
+                            <p>-</p>
+                            <p><strong>Endless</strong> Amet</p>
+                        </div>
+                        <div class="panel-footer">
+                            <h3>500,000</h3>
+                            <button class="btn btn-lg">선택</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-xs-12">
+                    <div class="panel panel-default text-center">
+                        <div class="panel-heading">
+                            <h1>CPS / CPA</h1>
+                            <p>(Cost Per Sale) / (Cost Per Action)</p>
+                        </div>
+                        <div class="panel-body">
+                            <p>광고주가 원하는 반응을 보일때 광고비가 부과</p>
+                            <p>-</p>
+                            <p>-</p>
+                            <p>-</p>
+                            <p><strong>Endless</strong> Amet</p>
+                        </div>
+                        <div class="panel-footer">
+                            <h3>500,000</h3>
+                            <button class="btn btn-lg">선택</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

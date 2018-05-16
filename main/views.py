@@ -102,3 +102,7 @@ def my_info_edit(request, pk):
     else:
         form = UserChangeForm(instance=user)
     return render(request, 'main/user/my_info_edit.html', {'form': form})
+
+
+def product(request):
+    return render(request, 'main/product/product_main.html', {})
